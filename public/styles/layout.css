@@ -18,8 +18,44 @@ body {
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
+  font-family: 'Source Sans Pro', 'sans-serif';
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+nav {
+  font-family: 'Bungee', 'sans-serif';
+}
+
+#timeline {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+
+.tweet {
+  border: solid 2px #545149;
+  border-radius: 8px;
+  margin: 5px;
+  font-size: 28px;
+}
+
+.tweet:hover {
+  text-shadow: 2px 2px 8px grey;
+  box-shadow: 3px 3px 8px grey;
+}
+
+.tweeter {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+article footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: solid 2px #545149;
+  padding-top: 10px;
+  margin: 15px;
+}
