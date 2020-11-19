@@ -24,6 +24,18 @@ body {
   display: flex;
 }
 
+@media only screen and (min-width: 1024px) {
+  body {
+    margin-top: 80px;
+    justify-content: space-evenly;
+  }
+
+  #timeline {
+    width: 45vw;
+    justify-self: right;
+  }
+}
+
 nav {
   font-family: 'Bungee', 'sans-serif';
 }

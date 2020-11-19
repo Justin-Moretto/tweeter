@@ -11,3 +11,17 @@
 header div {
   align-self: center;
 }
+
+header img {
+  padding-top: 28px;
+}
+
+header h2 {
+  margin-top: 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .header {
+    width: 33vw;
+  }
+}

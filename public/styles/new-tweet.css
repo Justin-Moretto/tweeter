@@ -9,20 +9,22 @@
 .new-tweet div {
   display: flex;
   justify-content: space-between;
-
 }
 
 .new-tweet div button {
   background-color: rgb(62, 62, 192);
   font-family: 'Bungee', 'sans-serif';
   color: white;
-  border: none;
   padding: 10px;
+  border: 2px solid #545149;
+  border-radius: 15px;
+  outline: none;
 }
 
-.new-tweet div button:hover {
+.new-tweet div button:focus {
   background-color: peachpuff;
   color: rgb(62, 62, 192);
+  outline: none;
 }
 
 .new-tweet textarea {
@@ -30,7 +32,20 @@
   border: none;
   border-bottom: 4px solid #545149;
   resize: none;
-  width: 40em;
+  width: 88vw;
+  outline: none;
+}
+
+@media only screen and (min-width: 1024px) {
+  .new-tweet textarea {
+    width: 45vw;
+    justify-self: right;
+    margin-top: 90px;
+  }
+}
+
+.new-tweet textarea:focus {
+  background-color: #f0f0f0;
 }
 
 .new-tweet output {
@@ -44,5 +59,6 @@
   font-size: 24px;
   font-weight: 600;
   margin: 0;
-  padding-top: 5px;
+  padding-top: 8px;
+  justify-self: center;
 }
