@@ -8,8 +8,11 @@
 
 //const $tweet = createTweetElement(tweetData);
 
-
-
+const escape =  function(str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
 
 $(document).ready(() => {
   
@@ -19,7 +22,7 @@ $(document).ready(() => {
               <div>${tweetData.user.name}</div>
               <div>${tweetData.user.handle}</div>
             </div>
-            <p class="tweeter">${tweetData.content.text}</p>
+            <p class="tweeter">${escape(tweetData.content.text)}</p>
             <footer>
               <div>${tweetData.created_at}</div>
               <div>Flag, Retweet, Like</div>
@@ -36,13 +39,21 @@ $(document).ready(() => {
   //submit tweet to the database when submit buttom is clicked
   $('form').on('submit', event => {
     event.preventDefault();
-    $.ajax({
-      url: '/tweets',
-      method: 'POST',
-      data: $('form').serialize()
-    }).then(() => {
-      loadTweets();
-    })
+    if (!$('#tweet-text').val()) {
+      $('#error').text('You can\'t submit an empty tweet!');
+      $('#error').show();
+    } else if ($("#tweet-text").val().length > 140) {
+      $('#error').text('Tweet is too long! (140 characters max.)');
+      $('#error').show();
+    } else {
+      $.ajax({
+        url: '/tweets',
+        method: 'POST',
+        data: $('form').serialize()
+      }).then(() => {
+        loadTweets();
+      })
+    }
   });
 
   //Get all tweets and load them to page in order, starting with most recent

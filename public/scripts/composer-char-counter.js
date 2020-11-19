@@ -12,6 +12,7 @@ const handleKeyUp = function() {
   if (charsLeft < 0) {
     $("#counter").css('color', 'red');
   } else {
+    $('#error').hide();
     $("#counter").css('color', 'black');
   }
 
