@@ -12,7 +12,7 @@
 }
 
 .new-tweet div button {
-  background-color: rgb(62, 62, 192);
+  background-color: #4056A1;
   font-family: 'Bungee', 'sans-serif';
   color: white;
   padding: 10px;
@@ -23,7 +23,7 @@
 
 .new-tweet div button:focus {
   background-color: peachpuff;
-  color: rgb(62, 62, 192);
+  color: #4056A1;
   outline: none;
 }
 

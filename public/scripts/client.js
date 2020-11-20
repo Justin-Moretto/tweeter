@@ -19,16 +19,23 @@ $(document).ready(() => {
   const createTweetElement = (tweetData) => {
     return `<article class="tweet">
             <div class="tweeter">
-              <div>${tweetData.user.name}</div>
+              <div class="profile">
+                <i class="far fa-user"></i>
+                <div>${tweetData.user.name}</div>
+              </div>
               <div>${tweetData.user.handle}</div>
             </div>
             <p class="tweeter">${escape(tweetData.content.text)}</p>
             <footer>
               <div>${tweetData.created_at}</div>
-              <div>Flag, Retweet, Like</div>
+              <div>
+                <i class="fa fa-flag"></i>
+                <i class="fa fa-retweet"></i>
+                <i class="fa fa-heart"></i>
+              </div>
             </footer>
             </article>`
-  };
+  }
   
   const renderTweets = function(tweets) {
     for (const tweet of tweets) {

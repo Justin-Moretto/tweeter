@@ -7,8 +7,22 @@ nav {
   position: fixed;
   top: 0;
   width: 100vw;
+  display: flex;
+  justify-content: space-between;
 }
 
 span {
   font-family: 'Bungee', 'sans-serif';
+}
+
+nav>div {
+  font-family: 'Source Sans Pro', 'sans-serif';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+nav>div>i {
+  margin-top: -18px;
 }

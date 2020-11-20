@@ -71,3 +71,11 @@ article footer {
   padding-top: 10px;
   margin: 15px;
 }
+
+.profile {
+  display: flex;
+}
+
+.profile i {
+  margin-right: 10px;
+}
