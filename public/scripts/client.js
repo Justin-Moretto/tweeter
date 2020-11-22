@@ -14,9 +14,42 @@ const escape =  function(str) {
   return div.innerHTML;
 }
 
+const dateParser = function(date) {
+  const dateCreated = new Date(date);
+  const currentDate = new Date();
+  let output = '';
+
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  if (dateCreated.getFullYear() === currentDate.getFullYear()) {
+    if (months[dateCreated.getMonth()] === months[currentDate.getMonth()]) {
+      if (dateCreated.getDate() === currentDate.getDate()) {
+        if (dateCreated.getHours() === currentDate.getHours()) {
+          if (dateCreated.getMinutes() === currentDate.getMinutes()) {
+            output = `A few seconds ago`;
+          } else {
+            output = `${currentDate.getMinutes() - dateCreated.getMinutes()} minutes ago`;
+          }
+        } else {
+          output = `${currentDate.getHours() - dateCreated.getHours()} hours ago`;
+        }
+      } else {
+        output = `${months[currentDate.getMonth()] - months[dateCreated.getMonth()]} days ago`;
+      }
+    } else {
+      output = `A while ago`;
+    }
+  } else {
+    output = `${currentDate.getFullYear() - dateCreated.getFullYear()} years ago`;
+  }
+  
+  return output;
+};
+
 $(document).ready(() => {
   
   const createTweetElement = (tweetData) => {
+    let timeAgo = dateParser(tweetData.created_at);
     return `<article class="tweet">
             <div class="tweeter">
               <div class="profile">
@@ -27,7 +60,7 @@ $(document).ready(() => {
             </div>
             <p class="tweeter">${escape(tweetData.content.text)}</p>
             <footer>
-              <div>${tweetData.created_at}</div>
+              <div> Tweeted ${timeAgo}</div>
               <div>
                 <i class="fa fa-flag"></i>
                 <i class="fa fa-retweet"></i>

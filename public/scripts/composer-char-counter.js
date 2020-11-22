@@ -1,6 +1,6 @@
 $(document).ready(function() {
   console.log('DOM ready');
-  $('#tweet-text').keydown(handleKeyUp);
+  $('#tweet-text').keyup(handleKeyUp);
 });
 
 const handleKeyUp = function() {
