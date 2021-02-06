@@ -17,3 +17,10 @@ Tweets must be less than 140 characters otherwise an error message will be displ
 !["Mobile"](https://github.com/Justin-Moretto/tweeter/blob/master/docs/mobile.png?raw=true)
 !["Desktop1"](https://github.com/Justin-Moretto/tweeter/blob/master/docs/desktop1.png?raw=true)
 !["Desktop2"](https://github.com/Justin-Moretto/tweeter/blob/master/docs/desktop2.png?raw=true)
+
+## Getting Started
+
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the npm install command.
+3. Start the web server using the npm run local command. The app will be served at http://localhost:8080/.
+4. Go to http://localhost:8080/ in your browser.
