@@ -4,46 +4,9 @@ const escape = function (str) {
   return div.innerHTML;
 }
 
-const dateParser = function (date) {
-  const dateCreated = new Date(date);
-  const currentDate = new Date();
-  let output = '';
-
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-  if (dateCreated.getFullYear() === currentDate.getFullYear()) {
-    if (months[dateCreated.getMonth()] === months[currentDate.getMonth()]) {
-      if (dateCreated.getDate() === currentDate.getDate()) {
-        if (dateCreated.getHours() === currentDate.getHours()) {
-          if (dateCreated.getMinutes() === currentDate.getMinutes()) {
-            output = `A few seconds ago`;
-          } else {
-            output = `${currentDate.getMinutes() - dateCreated.getMinutes()} minutes ago`;
-          }
-        } else {
-          output = `${currentDate.getHours() - dateCreated.getHours()} hours ago`;
-        }
-      } else {
-        output = `${months[currentDate.getMonth()] - months[dateCreated.getMonth()]} days ago`;
-      }
-    } else {
-      output = `A while ago`;
-    }
-  } else {
-    output = `${currentDate.getFullYear() - dateCreated.getFullYear()} years ago`;
-  }
-
-  return output;
-};
-
 $(document).ready(() => {
   navToggle();
-
-  const renderTweets = function (tweets) {
-    for (const tweet of tweets) {
-      $('#timeline').prepend(createTweetElement(tweet));
-    }
-  }
+  loadTweets();
 
   //submit tweet to the database when submit buttom is clicked
   $('form').on('submit', event => {
@@ -64,56 +27,14 @@ $(document).ready(() => {
       })
     }
   });
-
-  //Get all tweets and load them to page in order, starting with most recent
-  const loadTweets = () => {
-    $.ajax({
-      url: '/tweets',
-      method: 'GET',
-      dataType: 'JSON',
-    }).then((res) => {
-      renderTweets(res);
-    });
-  }
-  loadTweets();
 })
-
-// Stretch: toggle new tweet
-const navToggle = function () {
-  $(".write-tweet")
-    .on("click", function () {
-      $("section.new-tweet").slideToggle(400, function () {
-        $(this).find(".tweet-text").focus();
-      });
-    });
-};
-
-//Top Scroll
-const topScroll = function () {
-  $(document).scroll(function () {
-    if ($(window).scrollTop() > 200) {
-      $("div.to-top")
-        .show(300)
-        .on("click", function () {
-          $(document).off("scroll");
-          $("html, body").stop(true, false).animate({ scrollTop: "0" }, 300, () => {
-            $("div.to-top").hide(300);
-            $(document).scroll(topScroll);
-          });
-        });
-    }
-  });
-};
-
-$(() => {
-  $(document).scroll(function () {
-    topScroll();
-  });
-});
 
 $(() => {
   $("section.sliding").hide();
   $("section.new-tweet").hide();
   $("div.to-top").hide();
+  $(document).scroll(function () {
+    topScroll();
+  });
 })
 
