@@ -8,7 +8,7 @@ div.to-top {
   height: 50px;
   right: 50px;
   bottom: 50px;
-  background-color: red;
+  background-color: #4056A1;
   color: white;
   opacity: 0.5;
   border-radius: 50%;
@@ -21,4 +21,5 @@ div.to-top:hover {
   right: 45px;
   bottom: 45px;
   font-size: 35px;
+  cursor: pointer;
 }

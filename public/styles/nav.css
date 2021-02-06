@@ -21,8 +21,14 @@ nav>div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 nav>div>i {
   margin-top: -18px;
+}
+
+.write-tweet:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }

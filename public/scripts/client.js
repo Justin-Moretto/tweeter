@@ -1,12 +1,13 @@
-const escape = function (str) {
-  let div = document.createElement('div');
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-}
 
 $(document).ready(() => {
   navToggle();
   loadTweets();
+  $("section.sliding").hide();
+  $("section.new-tweet").hide();
+  $("div.to-top").hide();
+  $(document).scroll(function () {
+    topScroll();
+  });
 
   //submit tweet to the database when submit buttom is clicked
   $('form').on('submit', event => {
@@ -23,18 +24,11 @@ $(document).ready(() => {
         method: 'POST',
         data: $('form').serialize()
       }).then(() => {
+        $("#timeline").empty();
         loadTweets();
+        $("#tweet-text").val("");
+        $(".counter").val(140);
       })
     }
   });
 })
-
-$(() => {
-  $("section.sliding").hide();
-  $("section.new-tweet").hide();
-  $("div.to-top").hide();
-  $(document).scroll(function () {
-    topScroll();
-  });
-})
-
