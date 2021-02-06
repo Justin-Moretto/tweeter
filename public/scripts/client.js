@@ -1,25 +1,15 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
-
-
-//const $tweet = createTweetElement(tweetData);
-
-const escape =  function(str) {
+const escape = function (str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
 
-const dateParser = function(date) {
+const dateParser = function (date) {
   const dateCreated = new Date(date);
   const currentDate = new Date();
   let output = '';
 
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   if (dateCreated.getFullYear() === currentDate.getFullYear()) {
     if (months[dateCreated.getMonth()] === months[currentDate.getMonth()]) {
@@ -42,35 +32,14 @@ const dateParser = function(date) {
   } else {
     output = `${currentDate.getFullYear() - dateCreated.getFullYear()} years ago`;
   }
-  
+
   return output;
 };
 
 $(document).ready(() => {
-  
-  const createTweetElement = (tweetData) => {
-    let timeAgo = dateParser(tweetData.created_at);
-    return `<article class="tweet">
-            <div class="tweeter">
-              <div class="profile">
-                <i class="far fa-user"></i>
-                <div>${tweetData.user.name}</div>
-              </div>
-              <div>${tweetData.user.handle}</div>
-            </div>
-            <p class="tweeter">${escape(tweetData.content.text)}</p>
-            <footer>
-              <div> Tweeted ${timeAgo}</div>
-              <div>
-                <i class="fa fa-flag"></i>
-                <i class="fa fa-retweet"></i>
-                <i class="fa fa-heart"></i>
-              </div>
-            </footer>
-            </article>`
-  }
-  
-  const renderTweets = function(tweets) {
+  navToggle();
+
+  const renderTweets = function (tweets) {
     for (const tweet of tweets) {
       $('#timeline').prepend(createTweetElement(tweet));
     }
@@ -103,9 +72,48 @@ $(document).ready(() => {
       method: 'GET',
       dataType: 'JSON',
     }).then((res) => {
-      $('#timeline').empty();
       renderTweets(res);
     });
   }
   loadTweets();
 })
+
+// Stretch: toggle new tweet
+const navToggle = function () {
+  $(".write-tweet")
+    .on("click", function () {
+      $("section.new-tweet").slideToggle(400, function () {
+        $(this).find(".tweet-text").focus();
+      });
+    });
+};
+
+//Top Scroll
+const topScroll = function () {
+  $(document).scroll(function () {
+    if ($(window).scrollTop() > 200) {
+      $("div.to-top")
+        .show(300)
+        .on("click", function () {
+          $(document).off("scroll");
+          $("html, body").stop(true, false).animate({ scrollTop: "0" }, 300, () => {
+            $("div.to-top").hide(300);
+            $(document).scroll(topScroll);
+          });
+        });
+    }
+  });
+};
+
+$(() => {
+  $(document).scroll(function () {
+    topScroll();
+  });
+});
+
+$(() => {
+  $("section.sliding").hide();
+  $("section.new-tweet").hide();
+  $("div.to-top").hide();
+})
+

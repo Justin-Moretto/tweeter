@@ -51,6 +51,8 @@ nav {
   border-radius: 8px;
   margin: 5px;
   font-size: 28px;
+  resize: none;
+  margin-top: 10px;
 }
 
 .tweet:hover {
@@ -62,6 +64,7 @@ nav {
   display: flex;
   justify-content: space-between;
   margin: 15px;
+  word-break: break-all;
 }
 
 article footer {
