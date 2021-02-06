@@ -14,8 +14,8 @@ Tweets must be less than 140 characters otherwise an error message will be displ
 - Chance
 - Node 5.10.x or above
 
+!["demo"](https://github.com/Justin-Moretto/tweeter/blob/master/docs/tweeter-demo.gif?raw=true)
 !["Mobile"](https://github.com/Justin-Moretto/tweeter/blob/master/docs/mobile.png?raw=true)
-!["Desktop1"](https://github.com/Justin-Moretto/tweeter/blob/master/docs/desktop1.png?raw=true)
 !["Desktop2"](https://github.com/Justin-Moretto/tweeter/blob/master/docs/desktop2.png?raw=true)
 
 ## Getting Started
